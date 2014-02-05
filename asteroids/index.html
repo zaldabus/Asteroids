@@ -25,7 +25,8 @@
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
-    new AsteroidsGame.Game(ctx).start();
+    AsteroidsGame.currentGame = new AsteroidsGame.Game(ctx)
+    AsteroidsGame.currentGame.start();
 
     // var asteroid = new AsteroidsGame.Asteroid([250,250], [0,0]);
     // asteroid.draw(ctx);

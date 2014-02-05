@@ -43,7 +43,6 @@
     this.bullets.forEach(function(bullet) {
       bullet.move();
     });
-
   };
 
   Game.prototype.step = function () {
@@ -79,6 +78,16 @@
       this.bullets.push(bullet)
     };
   }
+
+  Game.prototype.removeAsteroid = function (asteroid) {
+    var index = this.asteroids.indexOf(asteroid);
+    this.asteroids.splice(index, 1);
+  };
+
+  Game.prototype.removeBullet = function (bullet) {
+    var index = this.bullets.indexOf(bullet);
+    this.bullets.splice(index, 1);
+  };
 
   Game.prototype.bindKeyHandlers = function() {
     var that = this;

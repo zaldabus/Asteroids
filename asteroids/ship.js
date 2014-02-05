@@ -26,7 +26,7 @@
       var vel = [xVel * multiplier, yVel * multiplier];
       var pos = [this.pos[0], this.pos[1]];
 
-      return new AsteroidsGame.Bullet(pos, vel);
+      return new AsteroidsGame.Bullet(pos, vel, AsteroidsGame.currentGame);
     }
   }
 
