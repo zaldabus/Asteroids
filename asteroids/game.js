@@ -48,8 +48,9 @@
   Game.prototype.step = function () {
     this.move();
     this.draw();
+    this.isOutofBounds();
     //turn this on when actually running the game
-    // this.checkCollisions();
+    this.checkCollisions();
   };
 
   Game.prototype.start = function () {
@@ -97,6 +98,31 @@
     key("right", function () { that.ship.power([1,0])});
 
     key("space", function () { that.fireBullet() });
+  }
+
+  Game.prototype.isOutofBounds = function() {
+    var that = this;
+    this.asteroids.forEach(function(asteroid) {
+      var x = asteroid.pos[0];
+      var y = asteroid.pos[1];
+      if (x > (Game.DIM_X + 20) || x < -20 || y > (Game.DIM_Y + 20) || y < -20) {
+        asteroid.pos = [(Game.DIM_X - 5) - x, (Game.DIM_Y - 5) - y];
+      }
+    })
+    this.bullets.forEach(function(bullet) {
+      var x = bullet.pos[0];
+      var y = bullet.pos[1];
+      if (x > Game.DIM_X || x < 0 || y > Game.DIM_Y || y < 0) {
+        var index = that.bullets.indexOf(bullet);
+        that.bullets.splice(index, 1);
+      }
+    })
+
+    var shipX = this.ship.pos[0];
+    var shipY = this.ship.pos[1];
+    if (shipX > Game.DIM_X || shipX < 0 || shipY > Game.DIM_Y || shipY < 0) {
+      this.ship.pos = [Game.DIM_X - shipX, Game.DIM_Y - shipY];
+    }
   }
 
 })(this);
