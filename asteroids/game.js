@@ -37,12 +37,13 @@
   Game.prototype.step = function () {
     this.move();
     this.draw();
-    this.checkCollisions();
+    //turn this on when actually running the game
+    // this.checkCollisions();
   };
 
   Game.prototype.start = function () {
+    this.bindKeyHandlers();
     this.AsteroidsGame.intervalId = setInterval(this.step.bind(this), Game.FPS);
-    console.log(intervalId);
   };
 
   Game.prototype.checkCollisions = function() {
@@ -57,6 +58,14 @@
 
   Game.prototype.stop = function() {
     clearInterval(this.AsteroidsGame.intervalId);
+  }
+
+  Game.prototype.bindKeyHandlers = function() {
+    var that = this;
+    key("up", function () { that.ship.power([0,-1])});
+    key("down", function () { that.ship.power([0,1])});
+    key("left", function () { that.ship.power([-1,0])});
+    key("right", function () { that.ship.power([1,0])});
   }
 
 })(this);

@@ -2,7 +2,7 @@
   var AsteroidsGame = root.AsteroidsGame = (root.AsteroidsGame || {});
 
   var Ship = AsteroidsGame.Ship = function Ship() {
-    AsteroidsGame.MovingObject.call(this, [250,250], [1,1], Ship.RADIUS, Ship.COLOR);
+    AsteroidsGame.MovingObject.call(this, [250,250], [0,0], Ship.RADIUS, Ship.COLOR);
   };
 
   Ship.RADIUS = 20;
